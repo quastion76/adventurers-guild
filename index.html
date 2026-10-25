@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="마인크래프트 RPG 서버 모험가 길드: 다섯 직업과 Q·E·R 스킬, 무기 제작·강화, 내 집과 밭, 은화·금화 경제, 주식. 실제 게임 영상으로 소개합니다.">
+<meta property="og:title" content="모험가 길드 서버">
+<meta property="og:description" content="마인크래프트 RPG 서버 모험가 길드: 다섯 직업과 Q·E·R 스킬, 무기 제작·강화, 내 집과 밭, 은화·금화 경제, 주식. 실제 게임 영상으로 소개합니다.">
+<meta property="og:image" content="media/hero.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="img/emblem_warrior.png">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>모험가 길드 서버</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Silkscreen&display=swap">
+<style>
+/* 레이아웃: 밤의 길드 회관 게시판. 금빛 테두리 액자(영상) + 문장, 여정 순서대로 내려간다. 한 가지 어두운 톤으로 고정. */
+:root {
+  --ink: #0e1120;
+  --ink-2: #151a2e;
+  --ink-3: #1e2441;
+  --gold: #e2b356;
+  --gold-hi: #f7dc95;
+  --gold-dim: #5c4a24;
+  --text: #ece4d0;
+  --muted: #a5a8bf;
+  --ice: #8fdcff;
+  --f-display: "Hahmlet", "Noto Serif KR", "Batang", serif;
+  --f-body: "IBM Plex Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --f-pixel: "Silkscreen", "Consolas", monospace;
+  --step: clamp(1rem, 0.95rem + 0.25vw, 1.08rem);
+  --h2: clamp(1.7rem, 1.3rem + 1.6vw, 2.5rem);
+  --wrap: 1120px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: var(--step);
+  line-height: 1.7;
+  overflow-x: hidden;
+  word-break: keep-all;      /* 한국어는 어절 단위로 줄바꿈 */
+  overflow-wrap: break-word;
+}
+a { color: var(--gold-hi); }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; border-radius: 4px; }
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.px { image-rendering: pixelated; image-rendering: crisp-edges; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 800; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.eyebrow {
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; color: var(--gold);
+  display: flex; gap: 0.7em; align-items: center;
+}
+.eyebrow .num { font-family: var(--f-pixel); letter-spacing: 0.05em; color: var(--gold-hi); }
+.lead { color: var(--muted); max-width: 62ch; }
+
+/* ---------- 상단 ---------- */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--gold-dim); }
+.hero::before {
+  content: ""; position: absolute; width: min(900px, 120vw); aspect-ratio: 1; right: -18%; top: -30%;
+  background: url(img/circle_arcane.png) center / contain no-repeat; opacity: 0.09;
+  animation: turn 120s linear infinite;
+}
+@keyframes turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .hero::before { animation: none; } }
+.hero-inner {
+  position: relative; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 4vw, 56px); align-items: center; padding-block: clamp(40px, 7vw, 88px);
+}
+.hero h1 { font-size: clamp(2.6rem, 1.8rem + 4vw, 4.6rem); line-height: 1.05; color: var(--gold-hi); }
+.hero h1 small { display: block; font-size: 0.32em; font-family: var(--f-body); font-weight: 500; color: var(--muted); letter-spacing: 0.04em; margin-top: 0.8em; }
+.hero-text { display: grid; gap: 22px; min-width: 0; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 6px;
+  font-weight: 600; text-decoration: none; border: 1px solid var(--gold); color: var(--ink); background: var(--gold);
+}
+.btn.ghost { background: transparent; color: var(--gold-hi); }
+.btn:hover { background: var(--gold-hi); color: var(--ink); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-size: 0.8rem; padding: 3px 10px; border: 1px solid var(--gold-dim); border-radius: 999px; color: var(--muted); }
+
+/* 금빛 액자 (영상) */
+.clip { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.frame {
+  position: relative; padding: 6px; background: linear-gradient(160deg, #2a2412, #14110a);
+  border: 1px solid var(--gold); border-radius: 6px; box-shadow: 0 0 0 1px #000, 0 18px 50px -20px rgba(226, 179, 86, 0.35);
+}
+.frame::after { content: ""; position: absolute; inset: 3px; border: 1px solid var(--gold-dim); border-radius: 4px; pointer-events: none; }
+.frame video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border-radius: 3px; }
+.clip figcaption { font-size: 0.85rem; color: var(--muted); }
+.clip figcaption::before { content: "▶ "; color: var(--gold); font-size: 0.75em; }
+
+/* ---------- 연대기 ---------- */
+.chronicle { padding-block: clamp(40px, 6vw, 72px); display: grid; gap: 26px; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 13px; height: 1px; background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim)); }
+.timeline li { position: relative; padding-top: 34px; display: grid; gap: 6px; min-width: 0; }
+.timeline li::before { content: ""; position: absolute; top: 7px; left: 0; width: 13px; height: 13px; transform: rotate(45deg); background: var(--ink); border: 2px solid var(--gold); }
+.timeline li.now::before { background: var(--gold); box-shadow: 0 0 12px var(--gold); }
+.year { font-family: var(--f-display); font-weight: 700; font-size: 1.25rem; color: var(--gold-hi); }
+.timeline p:last-child { color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- 공통 섹션 ---------- */
+section.block { padding-block: clamp(48px, 7vw, 92px); border-top: 1px solid #232843; }
+.block-head { display: grid; gap: 12px; margin-bottom: 32px; }
+.block-head h2 { font-size: var(--h2); }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.points li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+.points .ico { width: 34px; height: 34px; border-radius: 6px; display: grid; place-items: center; background: var(--ink-3); border: 1px solid var(--gold-dim); font-family: var(--f-pixel); color: var(--gold-hi); font-size: 0.8rem; }
+.points b { display: block; font-weight: 600; }
+.points span { color: var(--muted); font-size: 0.95rem; }
+.hud-shot { display: grid; gap: 8px; }
+.hud-shot img { width: 100%; max-width: 470px; border: 1px solid var(--gold-dim); border-radius: 6px; }
+.note { font-size: 0.85rem; color: var(--muted); }
+
+/* ---------- 직업 ---------- */
+.jobs { display: grid; gap: 14px; }
+.job {
+  display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 8px 24px; align-items: start;
+  padding: 18px; background: linear-gradient(100deg, color-mix(in srgb, var(--job) 14%, var(--ink-2)), var(--ink-2) 45%);
+  border: 1px solid color-mix(in srgb, var(--job) 45%, #2a2f4c); border-radius: 8px;
+}
+.job-head { display: flex; gap: 14px; align-items: center; }
+.job-head h3 { font-size: 1.7rem; color: var(--job); }
+.emblem { width: 88px; height: 88px; flex: none; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5)); }
+.res { font-size: 0.85rem; color: var(--muted); }
+.res-mana::before, .res-stamina::before { content: ""; display: inline-block; width: 26px; height: 6px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+.res-mana::before { background: linear-gradient(90deg, #2a5ab8, #5a96ff); }
+.res-stamina::before { background: linear-gradient(90deg, #c48014, #f8d650); }
+.job-desc { grid-column: 1; color: var(--muted); font-size: 0.95rem; }
+.skills { grid-column: 2; grid-row: 1 / span 2; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.skill { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 10px; align-items: start; min-width: 0; }
+.skill img { border-radius: 8px; }
+.skill-name { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+kbd {
+  font-family: var(--f-pixel); font-size: 0.75rem; min-width: 1.8em; text-align: center; padding: 1px 6px 2px;
+  border: 1px solid var(--gold); border-bottom-width: 3px; border-radius: 4px; color: var(--gold-hi); background: var(--ink);
+}
+.skill-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+.skill-meta { font-size: 0.78rem; color: var(--gold); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.keys-note { margin-top: 18px; display: grid; gap: 6px; padding: 14px 16px; border-left: 3px solid var(--gold); background: var(--ink-2); border-radius: 0 6px 6px 0; }
+.wide-clip { margin-top: 28px; }
+
+/* ---------- 무기 ---------- */
+.weapons { display: grid; gap: 10px; }
+.wrow { display: grid; grid-template-columns: 6rem repeat(3, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+.wjob { font-family: var(--f-display); font-weight: 700; font-size: 1.15rem; color: var(--job); align-self: center; }
+.weapon { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; align-items: center; padding: 8px 12px 8px 8px; border-radius: 6px; background: var(--ink-2); border: 1px solid #262b48; min-width: 0; }
+.weapon img { background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 70%); }
+.w-name { font-weight: 600; line-height: 1.35; }
+.w-rar { font-size: 0.8rem; }
+.w-cost { font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.r-common .w-rar { color: #c9ccd8; }
+.r-rare .w-rar { color: #6ee0f5; }
+.r-epic .w-rar { color: #d48cff; }
+.r-epic { border-color: #4a2f63; }
+.r-rare { border-color: #23485a; }
+.forge-grid { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 40px); align-items: start; }
+.table-wrap { overflow-x: auto; }
+table.enh { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 0.92rem; }
+.enh th, .enh td { padding: 8px 10px; border-bottom: 1px solid #262b48; text-align: center; white-space: nowrap; }
+.enh thead th { color: var(--gold-hi); font-weight: 600; }
+.enh tbody th { text-align: left; color: var(--muted); font-weight: 500; }
+
+/* ---------- 땅과 돈 ---------- */
+.coins { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 14px 16px; background: var(--ink-2); border: 1px solid var(--gold-dim); border-radius: 8px; }
+.coins img { width: 40px; height: 40px; }
+.coins b { font-family: var(--f-display); font-size: 1.15rem; color: var(--gold-hi); }
+.econ { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+.econ-text { display: grid; gap: 22px; min-width: 0; }
+.econ-text h3 { font-size: 1.2rem; color: var(--gold-hi); margin-bottom: 6px; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; }
+.list li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dashed #2a3050; font-size: 0.95rem; }
+.list li span:last-child, .shop-meta { color: var(--muted); font-size: 0.85rem; }
+.tab { font-variant-numeric: tabular-nums; }
+.stack { display: grid; gap: 22px; min-width: 0; }
+
+/* ---------- 시작하기 ---------- */
+.start { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.card { padding: 20px; background: var(--ink-2); border: 1px solid #262b48; border-radius: 8px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.card h3 { font-size: 1.25rem; color: var(--gold-hi); }
+.card ol { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.cmd { overflow-x: auto; }
+.cmd table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.cmd td { padding: 6px 8px; border-bottom: 1px solid #262b48; vertical-align: top; }
+.cmd td:first-child { white-space: nowrap; }
+code { font-family: "Consolas", "D2Coding", monospace; color: var(--gold-hi); font-size: 0.92em; }
+details { border-top: 1px solid #262b48; padding-top: 10px; }
+summary { cursor: pointer; color: var(--gold-hi); font-weight: 600; }
+
+footer { padding-block: 36px; border-top: 1px solid var(--gold-dim); color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- 좁은 화면 ---------- */
+@media (max-width: 900px) {
+  .hero-inner, .split, .forge-grid, .econ { grid-template-columns: minmax(0, 1fr); }
+  .job { grid-template-columns: minmax(0, 1fr); }
+  .job-desc, .skills { grid-column: 1; grid-row: auto; }
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  .wrow { grid-template-columns: minmax(0, 1fr); }
+  .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+  .timeline::before { display: none; }
+  .start { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">MINECRAFT 1.21.1 · NEOFORGE 모드 서버</p>
+      <h1>모험가 길드<small>서기 706년, 롤랑이 세운 길드의 문을 두드린다</small></h1>
+      <p class="lead">몬스터를 잡고, 직업을 고르고, 무기를 벼리고, 내 집과 밭을 가꾸는 협동 RPG 서버. 모험가끼리는 싸우지 않는 힐링 서버입니다.</p>
+      <div class="cta">
+        <a class="btn" href="#jobs">직업 보기</a>
+        <a class="btn ghost" href="#start">시작하기</a>
+      </div>
+      <div class="tags"><span class="tag">직업 5 · 스킬 15</span><span class="tag">무기 15 · 최대 ★5</span><span class="tag">은화 · 금화 · 주식</span><span class="tag">PvP 없음</span></div>
+    </div>
+    <figure class="clip"><div class="frame"><video autoplay loop muted playsinline preload="auto" poster="media/hero.jpg" aria-label="직업 스킬 장면 모음"><source src="media/hero.mp4" type="video/mp4"></video></div><figcaption>직업 스킬 장면 모음</figcaption></figure>
+  </div>
+</header>
+
+<main>
+  <div class="wrap chronicle">
+    <p class="eyebrow">연대기</p>
+    <ol class="timeline">
+      <li><p class="year">기원전 666년</p><p>악이 없던 세계에서 악의 씨앗이 꿈틀거렸다.</p></li>
+      <li><p class="year">서기 666년</p><p>사람들의 고통을 먹고 자란 씨앗이 피어났다. 정체 모를 몬스터가 쏟아졌다.</p></li>
+      <li><p class="year">서기 706년</p><p>롤랑이 홀로 몬스터 군세를 막아내고, 혼자서는 안 된다는 걸 깨달아 모험가 길드를 세웠다.</p></li>
+      <li class="now"><p class="year">지금</p><p>당신이 길드에 이름을 올린다.</p></li>
+    </ol>
+  </div>
+
+  <section class="block" id="arrive">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="eyebrow"><span class="num">01</span>도착 · 이름</p>
+        <h2>처음 접속하면 길드 앞에서, 이름부터 정합니다</h2>
+        <p class="lead">이름은 딱 한 번만 정할 수 있고, 머리 위 이름표와 채팅·탭 목록에 그 이름이 나옵니다. 기본 자금 30금으로 시작합니다.</p>
+      </div>
+      <div class="split">
+        <div class="stack">
+          <div class="hud-shot">
+            <img src="img/hud.png" alt="왼쪽 위 HUD: 얼굴, 이름, 직업, 잔액, HP 막대, 기력 막대" width="470" height="186">
+            <p class="note">왼쪽 위 HUD: 얼굴 · 이름 · 직업 · 잔액 · HP · 마나(마법사·성직자) 또는 기력(전사·궁수·도적)</p>
+          </div>
+          <ul class="points">
+            <li><span class="ico">PvP</span><p><b>모험가끼리는 싸울 수 없습니다</b><span>칼·화살·스킬 모두 플레이어에게는 피해가 없습니다.</span></p></li>
+            <li><span class="ico">◇</span><p><b>블록은 내 땅에서만</b><span>길드 마을 같은 공용 구역에서는 캐거나 놓을 수 없고, 남의 땅은 문 하나도 열 수 없습니다.</span></p></li>
+          </ul>
+        </div>
+        <div class="stack">
+          <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/join.jpg" aria-label="첫 접속 · 이름 정하기 · HUD"><source src="media/join.mp4" type="video/mp4"></video></div><figcaption>첫 접속 · 이름 정하기 · HUD</figcaption></figure>
+          <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/peace.jpg" aria-label="PvP 금지 · 공용 구역 블록 보호"><source src="media/peace.mp4" type="video/mp4"></video></div><figcaption>PvP 금지 · 공용 구역 블록 보호</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="jobs">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="eyebrow"><span class="num">02</span>직업</p>
+        <h2>길드 접수원에게서 고르는 다섯 직업</h2>
+        <p class="lead">직업마다 증표를 받고, 무기를 든 채로 <kbd>Q</kbd> <kbd>E</kbd> <kbd>R</kbd>을 누르면 스킬이 나갑니다. 무기가 아닌 것을 들면 Q는 버리기, E는 인벤토리로 원래대로 동작합니다.</p>
+      </div>
+      <div class="jobs">
+<article class="job" style="--job:#E8603C">
+  <header class="job-head">
+    <img class="px emblem" src="img/emblem_warrior.png" alt="전사 문장" width="88" height="88">
+    <div><h3>전사</h3><p class="res res-stamina">기력 · 초당 6 회복</p></div>
+  </header>
+  <p class="job-desc">앞장서서 몬스터를 막아내는 근접 전투 직업. 튼튼하고 여러 적을 한 번에 상대한다.</p>
+  <ul class="skills"><li class="skill">
+  <img class="px" src="img/s_dash_slash.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>돌진 베기</p>
+  <p class="skill-desc">앞으로 돌진하며 지나가는 길의 적을 벤다.</p>
+  <p class="skill-meta">기력 20 · 재사용 6초</p></div></li><li class="skill">
+  <img class="px" src="img/s_ground_slam.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>E</kbd>대지 강타</p>
+  <p class="skill-desc">땅을 내리쳐 주변 4칸의 적에게 피해를 주고 느리게 만든다.</p>
+  <p class="skill-meta">기력 30 · 재사용 10초</p></div></li><li class="skill">
+  <img class="px" src="img/s_war_cry.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>R</kbd>불굴의 함성</p>
+  <p class="skill-desc">8초간 피해를 덜 받고 보호막을 얻는다. 주변 동료의 힘이 오르고, 몬스터가 나를 노린다.</p>
+  <p class="skill-meta">기력 40 · 재사용 30초</p></div></li></ul>
+</article>
+<article class="job" style="--job:#6FCF4A">
+  <header class="job-head">
+    <img class="px emblem" src="img/emblem_archer.png" alt="궁수 문장" width="88" height="88">
+    <div><h3>궁수</h3><p class="res res-stamina">기력 · 초당 6 회복</p></div>
+  </header>
+  <p class="job-desc">멀리서 화살로 적을 쓰러뜨리는 원거리 직업. 얼음 화살로 적을 묶는다.</p>
+  <ul class="skills"><li class="skill">
+  <img class="px" src="img/s_multi_shot.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>연사</p>
+  <p class="skill-desc">바라보는 방향으로 화살 3발을 빠르게 쏜다.</p>
+  <p class="skill-meta">기력 15 · 재사용 5초</p></div></li><li class="skill">
+  <img class="px" src="img/s_frost_arrow.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>E</kbd>얼음 화살</p>
+  <p class="skill-desc">맞은 적을 얼려 크게 느리게 만든다.</p>
+  <p class="skill-meta">기력 20 · 재사용 8초</p></div></li><li class="skill">
+  <img class="px" src="img/s_arrow_rain.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>R</kbd>화살비</p>
+  <p class="skill-desc">바라보는 곳에 화살 30발을 쏟아붓는다.</p>
+  <p class="skill-meta">기력 40 · 재사용 25초</p></div></li></ul>
+</article>
+<article class="job" style="--job:#5A8CFF">
+  <header class="job-head">
+    <img class="px emblem" src="img/emblem_mage.png" alt="마법사 문장" width="88" height="88">
+    <div><h3>마법사</h3><p class="res res-mana">마나 · 초당 4 회복</p></div>
+  </header>
+  <p class="job-desc">마나로 불과 얼음을 다루는 마법 직업. 강력하지만 몸이 약하다.</p>
+  <ul class="skills"><li class="skill">
+  <img class="px" src="img/s_fire_bolt.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>화염구</p>
+  <p class="skill-desc">바라보는 적에게 불꽃을 날려 피해를 주고 불태운다.</p>
+  <p class="skill-meta">마나 15 · 재사용 4초</p></div></li><li class="skill">
+  <img class="px" src="img/s_frost_nova.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>E</kbd>서리 고리</p>
+  <p class="skill-desc">주변 5칸의 적을 얼려 피해를 주고 거의 멈추게 한다.</p>
+  <p class="skill-meta">마나 30 · 재사용 10초</p></div></li><li class="skill">
+  <img class="px" src="img/s_blink.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>R</kbd>순간이동</p>
+  <p class="skill-desc">바라보는 방향으로 최대 10칸 순간이동한다.</p>
+  <p class="skill-meta">마나 25 · 재사용 12초</p></div></li></ul>
+</article>
+<article class="job" style="--job:#F2D46B">
+  <header class="job-head">
+    <img class="px emblem" src="img/emblem_priest.png" alt="성직자 문장" width="88" height="88">
+    <div><h3>성직자</h3><p class="res res-mana">마나 · 초당 4 회복</p></div>
+  </header>
+  <p class="job-desc">동료를 치유하고 축복하는 지원 직업. 언데드에게 특히 강하다.</p>
+  <ul class="skills"><li class="skill">
+  <img class="px" src="img/s_heal.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>치유의 빛</p>
+  <p class="skill-desc">나와 주변 6칸의 동료 체력을 회복하고 독을 없앤다.</p>
+  <p class="skill-meta">마나 30 · 재사용 8초</p></div></li><li class="skill">
+  <img class="px" src="img/s_holy_smite.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>E</kbd>신성 강타</p>
+  <p class="skill-desc">바라보는 적에게 빛의 벼락을 내린다. 언데드에게 2배.</p>
+  <p class="skill-meta">마나 25 · 재사용 7초</p></div></li><li class="skill">
+  <img class="px" src="img/s_blessing.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>R</kbd>축복</p>
+  <p class="skill-desc">주변 8칸의 동료에게 10초간 재생과 힘을 준다.</p>
+  <p class="skill-meta">마나 50 · 재사용 40초</p></div></li></ul>
+</article>
+<article class="job" style="--job:#B06BE0">
+  <header class="job-head">
+    <img class="px emblem" src="img/emblem_rogue.png" alt="도적 문장" width="88" height="88">
+    <div><h3>도적</h3><p class="res res-stamina">기력 · 초당 6 회복</p></div>
+  </header>
+  <p class="job-desc">그림자에 숨어 적의 등 뒤를 노리는 직업. 빠르고 날카롭다.</p>
+  <ul class="skills"><li class="skill">
+  <img class="px" src="img/s_shadow_step.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>그림자 도약</p>
+  <p class="skill-desc">바라보는 적의 등 뒤로 순간이동해 찌른다.</p>
+  <p class="skill-meta">기력 20 · 재사용 8초</p></div></li><li class="skill">
+  <img class="px" src="img/s_poison_blade.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>E</kbd>독칼 회오리</p>
+  <p class="skill-desc">주변 3.5칸의 적을 베고 중독시킨다.</p>
+  <p class="skill-meta">기력 25 · 재사용 9초</p></div></li><li class="skill">
+  <img class="px" src="img/s_vanish.png" alt="" width="48" height="48">
+  <div class="skill-txt"><p class="skill-name"><kbd>R</kbd>은신</p>
+  <p class="skill-desc">6초간 투명해지고 빨라진다. 나를 쫓던 몬스터가 놓친다.</p>
+  <p class="skill-meta">기력 40 · 재사용 30초</p></div></li></ul>
+</article>
+      </div>
+      <div class="split wide-clip">
+        <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/job.jpg" aria-label="길드 접수원 · 직업 선택 창"><source src="media/job.mp4" type="video/mp4"></video></div><figcaption>길드 접수원 · 직업 선택 창</figcaption></figure>
+        <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/skills.jpg" aria-label="5개 직업 × Q · E · R 스킬 (3인칭)"><source src="media/skills.mp4" type="video/mp4"></video></div><figcaption>5개 직업 × Q · E · R 스킬 (3인칭)</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="weapons">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="eyebrow"><span class="num">03</span>무기 제작 · 강화</p>
+        <h2>직업 증표와 몬스터 전리품으로 벼리는 무기</h2>
+        <p class="lead">대장장이에게 증표와 재료를 넣으면 무기가 나옵니다. 희귀·영웅 무기에는 특수능력이 붙고, 강화 장인에게서 최대 ★5까지 올릴 수 있습니다. 단계마다 공격력 +10%.</p>
+      </div>
+      <div class="weapons">
+<div class="wrow"><p class="wjob" style="--job:#E8603C">전사</p><div class="weapon r-common">
+  <img class="px" src="img/w_squire_sword.png" alt="" width="64" height="64">
+  <div><p class="w-name">견습 기사의 검</p><p class="w-rar">일반</p>
+  <p class="w-cost">제작비 1금</p></div></div><div class="weapon r-rare">
+  <img class="px" src="img/w_flame_longsword.png" alt="" width="64" height="64">
+  <div><p class="w-name">화염의 장검</p><p class="w-rar">희귀 · 화염 · 불태움</p>
+  <p class="w-cost">제작비 5금</p></div></div><div class="weapon r-epic">
+  <img class="px" src="img/w_roland_greatsword.png" alt="" width="64" height="64">
+  <div><p class="w-name">롤랑의 대검</p><p class="w-rar">영웅 · 흡혈 · 피해의 15% 회복</p>
+  <p class="w-cost">제작비 20금</p></div></div></div>
+<div class="wrow"><p class="wjob" style="--job:#6FCF4A">궁수</p><div class="weapon r-common">
+  <img class="px" src="img/w_hunter_bow.png" alt="" width="64" height="64">
+  <div><p class="w-name">사냥꾼의 활</p><p class="w-rar">일반</p>
+  <p class="w-cost">제작비 1금</p></div></div><div class="weapon r-rare">
+  <img class="px" src="img/w_frost_longbow.png" alt="" width="64" height="64">
+  <div><p class="w-name">서리 장궁</p><p class="w-rar">희귀 · 서리 · 감속</p>
+  <p class="w-cost">제작비 5금</p></div></div><div class="weapon r-epic">
+  <img class="px" src="img/w_storm_bow.png" alt="" width="64" height="64">
+  <div><p class="w-name">폭풍의 장궁</p><p class="w-rar">영웅 · 뇌전 · 번개</p>
+  <p class="w-cost">제작비 20금</p></div></div></div>
+<div class="wrow"><p class="wjob" style="--job:#5A8CFF">마법사</p><div class="weapon r-common">
+  <img class="px" src="img/w_apprentice_staff.png" alt="" width="64" height="64">
+  <div><p class="w-name">견습 마법사의 지팡이</p><p class="w-rar">일반</p>
+  <p class="w-cost">제작비 1금</p></div></div><div class="weapon r-rare">
+  <img class="px" src="img/w_flame_staff.png" alt="" width="64" height="64">
+  <div><p class="w-name">화염의 지팡이</p><p class="w-rar">희귀 · 화염 · 불태움</p>
+  <p class="w-cost">제작비 5금</p></div></div><div class="weapon r-epic">
+  <img class="px" src="img/w_archmage_scepter.png" alt="" width="64" height="64">
+  <div><p class="w-name">대마법사의 홀</p><p class="w-rar">영웅 · 순환 · 공격 시 마나 회복</p>
+  <p class="w-cost">제작비 20금</p></div></div></div>
+<div class="wrow"><p class="wjob" style="--job:#F2D46B">성직자</p><div class="weapon r-common">
+  <img class="px" src="img/w_pilgrim_blade.png" alt="" width="64" height="64">
+  <div><p class="w-name">순례자의 성검</p><p class="w-rar">일반 · 신성 · 언데드 추가 피해</p>
+  <p class="w-cost">제작비 1금</p></div></div><div class="weapon r-rare">
+  <img class="px" src="img/w_light_scepter.png" alt="" width="64" height="64">
+  <div><p class="w-name">빛의 홀</p><p class="w-rar">희귀 · 신성 · 언데드 추가 피해</p>
+  <p class="w-cost">제작비 5금</p></div></div><div class="weapon r-epic">
+  <img class="px" src="img/w_saint_mace.png" alt="" width="64" height="64">
+  <div><p class="w-name">성녀의 철퇴</p><p class="w-rar">영웅 · 흡혈 · 피해의 15% 회복</p>
+  <p class="w-cost">제작비 20금</p></div></div></div>
+<div class="wrow"><p class="wjob" style="--job:#B06BE0">도적</p><div class="weapon r-common">
+  <img class="px" src="img/w_thief_dagger.png" alt="" width="64" height="64">
+  <div><p class="w-name">도둑의 단검</p><p class="w-rar">일반</p>
+  <p class="w-cost">제작비 1금</p></div></div><div class="weapon r-rare">
+  <img class="px" src="img/w_venom_blades.png" alt="" width="64" height="64">
+  <div><p class="w-name">맹독의 쌍검</p><p class="w-rar">희귀 · 맹독 · 중독</p>
+  <p class="w-cost">제작비 5금</p></div></div><div class="weapon r-epic">
+  <img class="px" src="img/w_shadow_fang.png" alt="" width="64" height="64">
+  <div><p class="w-name">그림자 송곳니</p><p class="w-rar">영웅 · 치명 · 1.5배 피해</p>
+  <p class="w-cost">제작비 20금</p></div></div></div>
+      </div>
+      <div class="forge-grid">
+        <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/forge.jpg" aria-label="무기 제작 · 강화"><source src="media/forge.mp4" type="video/mp4"></video></div><figcaption>무기 제작 · 강화</figcaption></figure>
+        <div class="stack">
+          <div class="table-wrap"><table class="enh">
+<thead><tr><th>목표 단계</th><th>★</th><th>★★</th><th>★★★</th><th>★★★★</th><th>★★★★★</th></tr></thead>
+<tbody><tr><th>성공 확률</th><td>90%</td><td>75%</td><td>60%</td><td>45%</td><td>30%</td></tr><tr><th>강화석</th><td>1</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>비용</th><td>1금</td><td>2금</td><td>4금</td><td>8금</td><td>16금</td></tr></tbody></table></div>
+          <p class="note">★4에서 ★5로 갈 때 실패하면 50% 확률로 한 단계 내려갑니다. 그 아래에서는 실패해도 단계가 유지됩니다. 강화석은 몬스터가 떨어뜨리거나 대장간 상점에서 삽니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="economy">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="eyebrow"><span class="num">04</span>땅과 돈</p>
+        <h2>내 집과 밭을 사고, 장사하고, 주식도 합니다</h2>
+      </div>
+      <div class="econ">
+        <div class="econ-text">
+          <div class="coins">
+            <img class="px" src="img/silver_coin.png" alt="은화" width="40" height="40"><b>은화 100</b><span>=</span>
+            <img class="px" src="img/gold_coin.png" alt="금화" width="40" height="40"><b>금화 1</b>
+          </div>
+          <p class="lead">돈은 계좌에 있고, 은행원에게서 동전으로 꺼내 다른 모험가에게 건넬 수 있습니다. <code>/송금</code>으로 바로 보내도 됩니다.</p>
+          <div><h3>부동산 중개인</h3><p class="lead">관리자가 정해 둔 구역의 집과 밭을 삽니다. 산 땅의 경계는 빛 장막으로 보이고, <code>/땅 공유</code>로 친구를 들일 수 있습니다.</p></div>
+          <div><h3>상점</h3><ul class="list"><li><span class="shop-name">잡화점</span><span class="shop-meta">사기 19종 · 팔기 8종</span></li>
+<li><span class="shop-name">건축 자재상</span><span class="shop-meta">사기 23종</span></li>
+<li><span class="shop-name">곡물 판매점</span><span class="shop-meta">사기 8종 · 팔기 8종</span></li>
+<li><span class="shop-name">낚시터</span><span class="shop-meta">사기 1종 · 팔기 9종</span></li>
+<li><span class="shop-name">대장간 상점</span><span class="shop-meta">사기 9종 · 팔기 7종</span></li></ul></div>
+          <div><h3>증권거래소</h3><ul class="list"><li><span>롤랑 상회</span><span class="tab">기준가 1금</span></li>
+<li><span>북부 광산 조합</span><span class="tab">기준가 80은</span></li>
+<li><span>황금들판 곡물상단</span><span class="tab">기준가 60은</span></li>
+<li><span>항구 어부 조합</span><span class="tab">기준가 50은</span></li>
+<li><span>대장장이 길드</span><span class="tab">기준가 1금 20은</span></li>
+<li><span>마물 연구소</span><span class="tab">기준가 2금</span></li></ul><p class="note">시세는 10분마다 바뀝니다. 연결된 상점에서 물건이 많이 팔리면 그 회사 주가가 오릅니다.</p></div>
+        </div>
+        <div class="stack">
+          <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/land.jpg" aria-label="집 사기 · 땅 경계 빛 장막 · 내 땅에서 짓기"><source src="media/land.mp4" type="video/mp4"></video></div><figcaption>집 사기 · 땅 경계 빛 장막 · 내 땅에서 짓기</figcaption></figure>
+          <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/economy.jpg" aria-label="은행 출금·입금 · 곡물 판매점"><source src="media/economy.mp4" type="video/mp4"></video></div><figcaption>은행 출금·입금 · 곡물 판매점</figcaption></figure>
+          <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/stock.jpg" aria-label="증권거래소"><source src="media/stock.mp4" type="video/mp4"></video></div><figcaption>증권거래소</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="start">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="eyebrow"><span class="num">05</span>시작하기</p>
+        <h2>접속 방법과 자주 쓰는 명령</h2>
+      </div>
+      <div class="start">
+        <div class="card">
+          <h3>모험가</h3>
+          <ol>
+            <li>서버 모드팩(NeoForge 1.21.1)을 설치합니다. 모드 파일은 접속할 때 자동으로 받습니다.</li>
+            <li>처음 접속하면 이름을 정합니다.</li>
+            <li>길드 접수원에게 말을 걸어 직업을 고릅니다.</li>
+            <li>무기를 든 채 <kbd>Q</kbd> <kbd>E</kbd> <kbd>R</kbd>. 키는 조작 설정의 "모험가 길드"에서 바꿀 수 있습니다.</li>
+          </ol>
+          <div class="cmd"><table>
+            <tr><td><code>/이름 &lt;이름&gt;</code></td><td>이름 정하기 (한 번만)</td></tr>
+            <tr><td><code>/잔액</code> · <code>/송금 &lt;은화&gt; &lt;이름&gt;</code></td><td>잔액 보기 · 돈 보내기</td></tr>
+            <tr><td><code>/집</code> · <code>/길드</code></td><td>내 집으로 · 길드로 이동</td></tr>
+            <tr><td><code>/땅 공유 &lt;이름&gt;</code></td><td>내 땅에 친구 들이기</td></tr>
+            <tr><td><code>/주식</code> · <code>/직업</code></td><td>증권거래소 열기 · 내 스킬 보기</td></tr>
+          </table></div>
+        </div>
+        <div class="card">
+          <h3>운영자</h3>
+          <ol>
+            <li>서버와 모든 클라이언트에 <code>guild-0.1.0.jar</code>를 넣습니다. <code>server.properties</code>의 <code>spawn-npcs=true</code>.</li>
+            <li>길드 앞에서 <code>/guild setspawn</code>, NPC 자리마다 <code>/guild npc guild</code> 등.</li>
+            <li>땅 두 모서리에서 <code>/guild plot pos1</code> · <code>pos2</code> → <code>/guild plot create house1 house 1500</code>.</li>
+          </ol>
+          <details>
+            <summary>설정 파일 (config/guild)</summary>
+            <p class="note">직업·스킬 수치(jobs.json), 상점 품목과 가격(shops.json), 무기 레시피(weapons.json), 회사(stocks.json), 기본 자금·보호 규칙·강화 확률(settings.json). 고친 뒤 <code>/guild reload</code>.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">모험가 길드 · guild 0.1.0 · 영상은 실험 서버에서 실제로 녹화한 게임 화면입니다 (소리 없음).</div>
+</footer>
+
+<script>
+  // 움직임 줄이기 설정이면 상단 반복 영상을 멈춘다
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('video[autoplay]').forEach(v => { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+    }
+  } catch (e) {}
+</script>
+
+</body>
+</html>
