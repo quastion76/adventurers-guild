@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="마인크래프트 RPG 서버 모험가 길드 0.3: 새 몬스터 3종 · 고블린 왕 필드 보스 · 말 걸음새 · 퀘스트 게시판 · 직업 5 · 전직 20 · 각인 · 생활 직업. 실제 게임 화면.">
+<meta name="description" content="마인크래프트 RPG 서버 모험가 길드 0.3: 새 몬스터 3종 · 고블린 왕 필드 보스 · 퀘스트 게시판 · 직업 5 · 전직 20 · 각인 · 생활 직업. 실제 게임 화면.">
 <meta property="og:title" content="모험가 길드 서버">
-<meta property="og:description" content="마인크래프트 RPG 서버 모험가 길드 0.3: 새 몬스터 3종 · 고블린 왕 필드 보스 · 말 걸음새 · 퀘스트 게시판 · 직업 5 · 전직 20 · 각인 · 생활 직업. 실제 게임 화면.">
+<meta property="og:description" content="마인크래프트 RPG 서버 모험가 길드 0.3: 새 몬스터 3종 · 고블린 왕 필드 보스 · 퀘스트 게시판 · 직업 5 · 전직 20 · 각인 · 생활 직업. 실제 게임 화면.">
 <meta property="og:image" content="media/hero.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="img/emblem_warrior.png">
@@ -241,6 +241,20 @@ h3.sub { font-size: 1.2rem; color: var(--gold-hi); }
 .iconset { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
 .iconset li { display: grid; justify-items: center; gap: 4px; padding: 8px 4px; border-radius: 6px; background: var(--ink-2); border: 1px solid #262b48; font-size: 0.78rem; color: var(--muted); text-align: center; }
 .iconset.big { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+/* 인게임 캡처 */
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0 0 24px; }
+.gallery.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.gallery.one { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+.g-shot { margin: 0; display: grid; gap: 5px; }
+.g-shot img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--gold-dim); border-radius: 6px; background: #000; }
+.g-shot figcaption { font-size: 0.82rem; color: var(--muted); }
+.job-shot { grid-column: 1; margin: 4px 0 0; }
+.job-shot img { width: 100%; height: auto; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--job) 45%, #2a2f4c); }
+.ii { vertical-align: middle; margin-right: 6px; }
+.scrolls { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.scrolls li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 10px; align-items: center; padding: 6px 8px; border-radius: 6px; background: var(--ink-2); border: 1px solid #262b48; }
+.scrolls b { display: block; color: var(--gold-hi); font-weight: 600; }
+.scrolls small { color: var(--muted); font-size: 0.85rem; }
 h3.sub.wide { margin-top: 40px; margin-bottom: 8px; }
 .muted { color: var(--muted); }
 .lock { font-size: 0.7rem; font-weight: 500; color: var(--gold); border: 1px solid var(--gold-dim); border-radius: 999px; padding: 0 6px; margin-left: 4px; }
@@ -317,7 +331,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
   .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
   .timeline::before { display: none; }
   .start { grid-template-columns: minmax(0, 1fr); }
-  .update-list, .bosses, .els, .lifes, .mobs { grid-template-columns: minmax(0, 1fr); }
+  .update-list, .bosses, .els, .lifes, .mobs, .gallery, .gallery.three { grid-template-columns: minmax(0, 1fr); }
   .patch li { grid-template-columns: minmax(0, 1fr); }
   .tree-row { grid-template-columns: minmax(0, 1fr); }
   .tw { grid-template-columns: minmax(0, 1fr); }
@@ -339,8 +353,8 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
       <ul class="bul hero-bul">
         <li>협동 RPG · 모험가끼리 PvP 없음 (동의한 결투만)</li>
         <li>직업 5 · 전직 20 · 스킬 25 · 레벨 50</li>
-        <li>새 몬스터 · 필드 보스 · 던전 · 각인 카드 · 생활 직업 · 말</li>
-        <li>최신: 0.3 — 새 몬스터 3종 · 말 걸음새 · 새 메뉴 화면</li>
+        <li>새 몬스터 · 필드 보스 · 던전 · 각인 카드 · 생활 직업 · 경매 · 결투</li>
+        <li>최신: 0.3 — 새 몬스터 3종 · 고블린 왕 · 새 메뉴 화면 · 아이콘</li>
       </ul>
       <div class="cta">
         <a class="btn" href="#monsters">0.3 업데이트</a>
@@ -364,7 +378,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
   </div>
 
   <div class="wrap update">
-    <p class="eyebrow">0.3 업데이트</p><ul class="update-list"><li><a href="#monsters"><b>몬스터 업데이트</b><span>새 몬스터 3종 · 고블린 왕 · 토벌 퀘스트</span></a></li><li><a href="#horse"><b>말 업데이트</b><span>걸음새 · 가속 · 스태미너</span></a></li><li><a href="#screens"><b>화면 업데이트</b><span>퀘스트 게시판 · 메뉴 창 · 아이콘</span></a></li></ul><p class="eyebrow">0.2 업데이트</p><ul class="update-list"><li><a href="#growth"><b>성장 업데이트</b><span>레벨 · 스탯 · 전직 · V 스킬</span></a></li><li><a href="#gear"><b>장비 업데이트</b><span>각인 · 속성 · 변형 무기</span></a></li><li><a href="#daily"><b>일일 콘텐츠 업데이트</b><span>출석 · 임무 · 의뢰 · 보관소</span></a></li><li><a href="#town"><b>생활 · 교류 업데이트</b><span>생활 직업 · 경매 · 결투 · 업보</span></a></li></ul>
+    <p class="eyebrow">0.3 업데이트</p><ul class="update-list"><li><a href="#monsters"><b>몬스터 업데이트</b><span>새 몬스터 3종 · 고블린 왕 · 토벌 퀘스트</span></a></li><li><a href="#screens"><b>화면 업데이트</b><span>퀘스트 게시판 · 메뉴 창 · 아이콘</span></a></li></ul><p class="eyebrow">0.2 업데이트</p><ul class="update-list"><li><a href="#growth"><b>성장 업데이트</b><span>레벨 · 스탯 · 전직 · V 스킬</span></a></li><li><a href="#gear"><b>장비 업데이트</b><span>각인 · 속성 · 변형 무기</span></a></li><li><a href="#daily"><b>일일 콘텐츠 업데이트</b><span>출석 · 임무 · 의뢰 · 보관소</span></a></li><li><a href="#town"><b>생활 · 교류 업데이트</b><span>생활 직업 · 경매 · 결투 · 업보</span></a></li></ul>
   </div>
 
   <section class="block" id="arrive">
@@ -376,6 +390,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
       </div>
       <div class="split">
         <div class="stack">
+          <div class="gallery "><figure class="g-shot"><img src="img/g_name.jpg" alt="첫 접속: 이름 정하기" width="1280" height="720" loading="lazy"><figcaption>첫 접속: 이름 정하기</figcaption></figure><figure class="g-shot"><img src="img/g_hud.jpg" alt="직업을 고른 뒤 HUD · 스킬 칸" width="1280" height="720" loading="lazy"><figcaption>직업을 고른 뒤 HUD · 스킬 칸</figcaption></figure></div>
           <div class="hud-shot">
             <img src="img/hud.png" alt="왼쪽 위 HUD: 얼굴, 이름, 직업, 잔액, HP 막대, 기력 막대" width="470" height="186">
             <p class="note">왼쪽 위 HUD: 얼굴 · 이름 · 직업 · 잔액 · HP · 마나(마법사·성직자) 또는 기력(전사·궁수·도적)</p>
@@ -400,6 +415,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
         <h2>직업 5종</h2>
         <ul class="bul"><li>길드 접수원에게서 선택 · 직업마다 증표</li><li>무기를 들고 <kbd>Q</kbd> <kbd>E</kbd> <kbd>R</kbd> 스킬 · 무기가 아니면 원래 키</li><li><kbd>R</kbd> 직업 퀘스트로 해방 · <kbd>V</kbd> 2차 전직 스킬 (<a href="#growth">성장 업데이트</a>)</li></ul>
       </div>
+      <div class="gallery one"><figure class="g-shot"><img src="img/g_jobmenu.jpg" alt="직업 선택 창: 마우스를 올리면 설명과 스킬" width="1280" height="720" loading="lazy"><figcaption>직업 선택 창: 마우스를 올리면 설명과 스킬</figcaption></figure></div>
       <div class="jobs">
 <article class="job" style="--job:#E8603C">
   <header class="job-head">
@@ -407,6 +423,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
     <div><h3>전사</h3><p class="res res-stamina">기력 · 초당 6 회복</p></div>
   </header>
   <p class="job-desc">앞장서서 몬스터를 막아내는 근접 전투 직업. 튼튼하고 여러 적을 한 번에 상대한다.</p>
+  <figure class="job-shot"><img src="img/g_job_warrior.jpg" alt="전사 스킬 장면" width="1280" height="720" loading="lazy"></figure>
   <ul class="skills"><li class="skill">
   <img class="px" src="img/s_dash_slash.png" alt="" width="48" height="48">
   <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>돌진 베기</p>
@@ -427,6 +444,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
     <div><h3>궁수</h3><p class="res res-stamina">기력 · 초당 6 회복</p></div>
   </header>
   <p class="job-desc">멀리서 화살로 적을 쓰러뜨리는 원거리 직업. 스트레이를 잡아 얼음 화살을 해방한다.</p>
+  <figure class="job-shot"><img src="img/g_job_archer.jpg" alt="궁수 스킬 장면" width="1280" height="720" loading="lazy"></figure>
   <ul class="skills"><li class="skill">
   <img class="px" src="img/s_multi_shot.png" alt="" width="48" height="48">
   <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>연사</p>
@@ -447,6 +465,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
     <div><h3>마법사</h3><p class="res res-mana">마나 · 초당 4 회복</p></div>
   </header>
   <p class="job-desc">마나로 불과 얼음을 다루는 마법 직업. 강력하지만 몸이 약하다.</p>
+  <figure class="job-shot"><img src="img/g_job_mage.jpg" alt="마법사 스킬 장면" width="1280" height="720" loading="lazy"></figure>
   <ul class="skills"><li class="skill">
   <img class="px" src="img/s_fire_bolt.png" alt="" width="48" height="48">
   <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>화염구</p>
@@ -467,6 +486,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
     <div><h3>성직자</h3><p class="res res-mana">마나 · 초당 4 회복</p></div>
   </header>
   <p class="job-desc">동료를 치유하고 축복하는 지원 직업. 언데드에게 특히 강하다.</p>
+  <figure class="job-shot"><img src="img/g_job_priest.jpg" alt="성직자 스킬 장면" width="1280" height="720" loading="lazy"></figure>
   <ul class="skills"><li class="skill">
   <img class="px" src="img/s_heal.png" alt="" width="48" height="48">
   <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>치유의 빛</p>
@@ -487,6 +507,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
     <div><h3>도적</h3><p class="res res-stamina">기력 · 초당 6 회복</p></div>
   </header>
   <p class="job-desc">그림자에 숨어 적의 등 뒤를 노리는 직업. 빠르고 날카롭다.</p>
+  <figure class="job-shot"><img src="img/g_job_rogue.jpg" alt="도적 스킬 장면" width="1280" height="720" loading="lazy"></figure>
   <ul class="skills"><li class="skill">
   <img class="px" src="img/s_shadow_step.png" alt="" width="48" height="48">
   <div class="skill-txt"><p class="skill-name"><kbd>Q</kbd>그림자 도약</p>
@@ -516,6 +537,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
         <h2>무기 제작 · 강화</h2>
         <ul class="bul"><li>대장장이: 직업 증표 + 몬스터 전리품 → 무기</li><li>희귀 · 영웅 무기: 특수능력</li><li>강화 장인: 최대 ★5 · 단계마다 공격력 +10%</li></ul>
       </div>
+      <div class="gallery three"><figure class="g-shot"><img src="img/g_forgelist.jpg" alt="대장장이: 만들 수 있는 무기와 재료" width="1280" height="720" loading="lazy"><figcaption>대장장이: 만들 수 있는 무기와 재료</figcaption></figure><figure class="g-shot"><img src="img/g_forge.jpg" alt="재료를 넣으면 결과 미리 보기" width="1280" height="720" loading="lazy"><figcaption>재료를 넣으면 결과 미리 보기</figcaption></figure><figure class="g-shot"><img src="img/g_enhance.jpg" alt="강화 장인: 확률 · 강화석 · 비용" width="1280" height="720" loading="lazy"><figcaption>강화 장인: 확률 · 강화석 · 비용</figcaption></figure></div>
       <div class="weapons">
 <div class="wrow"><p class="wjob" style="--job:#E8603C">전사</p><div class="weapon r-common">
   <img class="px" src="img/w_squire_sword.png" alt="" width="64" height="64">
@@ -595,7 +617,8 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
         <p class="eyebrow"><span class="num">04</span>기본</p>
         <h2>땅 · 돈 · 주식</h2>
       </div>
-      <div class="econ">
+      <div class="gallery three"><figure class="g-shot"><img src="img/g_bank.jpg" alt="은행: 출금 · 입금" width="1280" height="720" loading="lazy"><figcaption>은행: 출금 · 입금</figcaption></figure><figure class="g-shot"><img src="img/g_shop.jpg" alt="곡물 판매점: 사기 · 팔기" width="1280" height="720" loading="lazy"><figcaption>곡물 판매점: 사기 · 팔기</figcaption></figure><figure class="g-shot"><img src="img/g_landmenu.jpg" alt="부동산 중개인: 집 · 밭" width="1280" height="720" loading="lazy"><figcaption>부동산 중개인: 집 · 밭</figcaption></figure><figure class="g-shot"><img src="img/g_land.jpg" alt="산 땅: 빛 장막 경계" width="1280" height="720" loading="lazy"><figcaption>산 땅: 빛 장막 경계</figcaption></figure><figure class="g-shot"><img src="img/g_stock.jpg" alt="증권거래소" width="1280" height="720" loading="lazy"><figcaption>증권거래소</figcaption></figure></div>
+      <div class="econ wide-clip">
         <div class="econ-text">
           <div class="coins">
             <img class="px" src="img/silver_coin.png" alt="은화" width="40" height="40"><b>은화 100</b><span>=</span>
@@ -680,6 +703,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
   <p><b>보상</b> 18금 · 경험치 900 · 강화석 ×3, 고대의 핵 ×1 (50%), 서리의 속성석 ×1, 에픽 이상 각인 카드 ×1 (20%) · 서리 군주 카드 15%</p>
 </article></div>
       <h3 class="sub wide">엘리트 · 던전</h3>
+      <div class="gallery one"><figure class="g-shot"><img src="img/g_elite.jpg" alt="엘리트 돼지 전사: 금빛 테두리 · 체력 3배" width="1280" height="720" loading="lazy"><figcaption>엘리트 돼지 전사: 금빛 테두리 · 체력 3배</figcaption></figure></div>
       <ul class="bul"><li>엘리트 전리품: 엘리트의 전리품 70% · 강화석 30% · 속성석 15% · 각인 카드 확률 ×5</li><li>엘리트의 전리품: 필드 보스 소환 · 대장장이 승급 · 3차 전직 시험</li><li>던전: 구조물에 들어가면 보스가 깨어남 · 근처 모험가에게만 알림 · 고대의 핵 = 변형 무기 재료</li></ul>
       <div class="table-wrap"><table class="data"><thead><tr><th>구조물</th><th>보스</th><th>체력</th><th>패턴</th><th>보상</th></tr></thead><tbody><tr><th>사막 피라미드</th><td>「모래 파라오」</td><td>200</td><td>내려찍기 · 졸개 소환</td><td>고대의 핵 ×1, 강화석 ×2, 금 주괴 ×6</td></tr><tr><th>밀림 사원</th><td>「밀림의 우상」</td><td>180</td><td>서리 폭발 · 졸개 소환</td><td>고대의 핵 ×1, 강화석 ×2, 에메랄드 ×4</td></tr><tr><th>약탈자 전초기지</th><td>「약탈단 대장」</td><td>220</td><td>돌진 · 내려찍기 · 분노(체력 절반)</td><td>고대의 핵 ×1, 강화석 ×2, 변명자 카드 ×1 (30%)</td></tr><tr><th>삼림 대저택</th><td>「저택의 주인」</td><td>260</td><td>순간이동 · 졸개 소환 · 서리 폭발</td><td>고대의 핵 ×2, 강화석 ×3, 불사의 토템 ×1 (50%)</td></tr><tr><th>시련의 회당</th><td>「시련의 폭풍」</td><td>200</td><td>순간이동 · 서리 폭발</td><td>고대의 핵 ×1, 강화석 ×2, 브리즈 막대 ×3</td></tr><tr><th>요새</th><td>「엔드 수문장」</td><td>260</td><td>순간이동 · 내려찍기 · 분노(체력 절반)</td><td>고대의 핵 ×2, 강화석 ×3, 엔더 진주 ×6</td></tr><tr><th>난파선</th><td>「유령 선장」</td><td>180</td><td>내려찍기 · 졸개 소환</td><td>고대의 핵 ×1, 강화석 ×2, 앵무조개 껍데기 ×1</td></tr><tr><th>늪지 오두막</th><td>「늪지 마녀 모르가」</td><td>150</td><td>서리 폭발 · 순간이동 · 졸개 소환</td><td>고대의 핵 ×1, 강화석 ×2, 맹독의 속성석 ×1</td></tr><tr><th>네더 요새</th><td>「요새의 화염 군주」</td><td>240</td><td>내려찍기 · 졸개 소환 · 분노(체력 절반)</td><td>고대의 핵 ×1, 강화석 ×2, 화염의 속성석 ×1</td></tr><tr><th>보루 잔해</th><td>「피글린 전쟁군주」</td><td>260</td><td>돌진 · 내려찍기 · 분노(체력 절반)</td><td>고대의 핵 ×2, 강화석 ×3, 금 블록 ×2</td></tr></tbody></table></div>
       <h3 class="sub wide">몬스터 도감</h3>
@@ -690,25 +714,10 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
       <ul class="bul"><li>10 · 50마리 보상: 1금 · 4금</li><li>처음 기록 경험치 20</li><li>상세 창의 몬스터는 마우스를 따라 고개를 돌림</li></ul>
     </div>
   </section>
-  <section class="block" id="horse">
-    <div class="wrap">
-      <div class="block-head">
-        <p class="eyebrow"><span class="num">06</span>0.3 업데이트</p>
-        <h2>말 업데이트</h2>
-        <p class="summary">걸음새 · 가속 · 스태미너 · 부상 · 충돌</p>
-      </div>
-<ul class="patch"><li><span class="pt t-new3">0.3 신규</span><b>걸음새 3단계</b><span class="pd">평보 · 속보 · 질주 · 무릎이 접히는 다리 · 이동 거리에 맞춘 발걸음 · 모드에 포함(따로 설치 없음)</span></li><li><span class="pt t-new">신규</span><b>가속 2단계</b><span class="pd"><kbd>Ctrl</kbd> · 1단 +35% · 2단 +80% · 3초 정지 시 해제</span></li><li><span class="pt t-new">신규</span><b>스태미너 100</b><span class="pd">가속할 때만 감소(1단 초당 4 · 2단 12) · 사람 없이 3초 쉬면 초당 3 회복</span></li><li><span class="pt t-new">신규</span><b>부상 감속</b><span class="pd">잃은 체력 비율 × 60% 만큼 느려짐</span></li><li><span class="pt t-new">신규</span><b>충돌 낙마</b><span class="pd">가속 중 벽 충돌 → 말 5~9 · 사람 4~8 피해 + 낙마</span></li><li><span class="pt t-new">신규</span><b>회복 제한</b><span class="pd">먹이 · 자연 회복 없음 → 휴식(10초 뒤 5초마다 1) · 말 치료 붕대(+10)</span></li></ul>
-      <div class="split">
-        <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/gait.jpg" aria-label="걸음새: 평보 → 속보 → 1단 질주 → 2단 질주 → 다시 평보"><source src="media/gait.mp4" type="video/mp4"></video></div><figcaption>걸음새: 평보 → 속보 → 1단 질주 → 2단 질주 → 다시 평보</figcaption></figure>
-        <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/horse.jpg" aria-label="가속 · 스태미너 · 벽 충돌 낙마 · 붕대 치료"><source src="media/horse.mp4" type="video/mp4"></video></div><figcaption>가속 · 스태미너 · 벽 충돌 낙마 · 붕대 치료</figcaption></figure>
-      </div>
-      <ul class="bul"><li>평보: 네 다리를 차례로</li><li>속보: 대각선 두 다리씩 · 몸이 통통</li><li>질주: 뒷다리 → 앞다리 순서 · 몸이 앞뒤로 출렁 · 2단은 보폭 더 크게</li><li>말 · 당나귀 · 노새 모두 가속 · 스태미너 적용 (걸음새 모델은 말)</li></ul>
-    </div>
-  </section>
   <section class="block" id="screens">
     <div class="wrap">
       <div class="block-head">
-        <p class="eyebrow"><span class="num">07</span>0.3 업데이트</p>
+        <p class="eyebrow"><span class="num">06</span>0.3 업데이트</p>
         <h2>화면 업데이트</h2>
         <p class="summary">퀘스트 게시판 · 메뉴 창 · 버튼 아이콘 · 아이템 그림</p>
       </div>
@@ -722,20 +731,21 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
         <figure class="shot"><img src="img/shot_hub.png" alt="모험가 수첩: 가방 없이 큰 아이콘 버튼과 이름" width="950" height="640" loading="lazy"><figcaption>버튼만 있는 창(수첩 · 도감 등): 가방 없이 큰 버튼과 이름</figcaption></figure>
       </div>
       <h3 class="sub wide">아이템 그림</h3>
-      <ul class="iconset big"><li><img class="px" src="img/i_enhance_stone.png" alt="" width="64" height="64"><span>강화석</span></li><li><img class="px" src="img/silver_coin.png" alt="" width="64" height="64"><span>은화</span></li><li><img class="px" src="img/gold_coin.png" alt="" width="64" height="64"><span>금화</span></li><li><img class="px" src="img/i_monster_essence.png" alt="" width="64" height="64"><span>마물의 정수</span></li><li><img class="px" src="img/i_horse_bandage.png" alt="" width="64" height="64"><span>말 치료 붕대</span></li><li><img class="px" src="img/i_elite_trophy.png" alt="" width="64" height="64"><span>엘리트의 전리품</span></li><li><img class="px" src="img/i_ancient_core.png" alt="" width="64" height="64"><span>고대의 핵</span></li><li><img class="px" src="img/i_engrave_card_normal.png" alt="" width="64" height="64"><span>카드 노말</span></li><li><img class="px" src="img/i_engrave_card_rare.png" alt="" width="64" height="64"><span>카드 레어</span></li><li><img class="px" src="img/i_engrave_card_epic.png" alt="" width="64" height="64"><span>카드 에픽</span></li><li><img class="px" src="img/i_engrave_card_legend.png" alt="" width="64" height="64"><span>카드 전설</span></li></ul>
+      <ul class="iconset big"><li><img class="px" src="img/i_enhance_stone.png" alt="" width="64" height="64"><span>강화석</span></li><li><img class="px" src="img/silver_coin.png" alt="" width="64" height="64"><span>은화</span></li><li><img class="px" src="img/gold_coin.png" alt="" width="64" height="64"><span>금화</span></li><li><img class="px" src="img/i_monster_essence.png" alt="" width="64" height="64"><span>마물의 정수</span></li><li><img class="px" src="img/i_elite_trophy.png" alt="" width="64" height="64"><span>엘리트의 전리품</span></li><li><img class="px" src="img/i_ancient_core.png" alt="" width="64" height="64"><span>고대의 핵</span></li><li><img class="px" src="img/i_engrave_card_normal.png" alt="" width="64" height="64"><span>카드 노말</span></li><li><img class="px" src="img/i_engrave_card_rare.png" alt="" width="64" height="64"><span>카드 레어</span></li><li><img class="px" src="img/i_engrave_card_epic.png" alt="" width="64" height="64"><span>카드 에픽</span></li><li><img class="px" src="img/i_engrave_card_legend.png" alt="" width="64" height="64"><span>카드 전설</span></li></ul>
       <h3 class="sub wide">버튼 아이콘</h3>
-      <ul class="iconset"><li><img class="px" src="img/ic_engrave.png" alt="" width="48" height="48"><span>각인</span></li><li><img class="px" src="img/ic_enhance.png" alt="" width="48" height="48"><span>강화</span></li><li><img class="px" src="img/ic_duel.png" alt="" width="48" height="48"><span>결투</span></li><li><img class="px" src="img/ic_auction.png" alt="" width="48" height="48"><span>경매장</span></li><li><img class="px" src="img/ic_xp.png" alt="" width="48" height="48"><span>경험치</span></li><li><img class="px" src="img/ic_strength.png" alt="" width="48" height="48"><span>공격력</span></li><li><img class="px" src="img/ic_guild.png" alt="" width="48" height="48"><span>길드</span></li><li><img class="px" src="img/ic_profile.png" alt="" width="48" height="48"><span>내 정보</span></li><li><img class="px" src="img/ic_farmer.png" alt="" width="48" height="48"><span>농부</span></li><li><img class="px" src="img/ic_stats.png" alt="" width="48" height="48"><span>능력치</span></li><li><img class="px" src="img/ic_next.png" alt="" width="48" height="48"><span>다음</span></li><li><img class="px" src="img/ic_close.png" alt="" width="48" height="48"><span>닫기</span></li><li><img class="px" src="img/ic_blacksmith.png" alt="" width="48" height="48"><span>대장장이</span></li><li><img class="px" src="img/ic_dungeon.png" alt="" width="48" height="48"><span>던전</span></li><li><img class="px" src="img/ic_bestiary.png" alt="" width="48" height="48"><span>도감</span></li><li><img class="px" src="img/ic_money.png" alt="" width="48" height="48"><span>돈</span></li><li><img class="px" src="img/ic_land.png" alt="" width="48" height="48"><span>땅</span></li><li><img class="px" src="img/ic_mana.png" alt="" width="48" height="48"><span>마나</span></li><li><img class="px" src="img/ic_horse.png" alt="" width="48" height="48"><span>말</span></li><li><img class="px" src="img/ic_agility.png" alt="" width="48" height="48"><span>민첩</span></li><li><img class="px" src="img/ic_mail.png" alt="" width="48" height="48"><span>보관소</span></li><li><img class="px" src="img/ic_boss.png" alt="" width="48" height="48"><span>보스</span></li><li><img class="px" src="img/ic_empty.png" alt="" width="48" height="48"><span>빈 칸</span></li><li><img class="px" src="img/ic_shop.png" alt="" width="48" height="48"><span>상점</span></li><li><img class="px" src="img/ic_life.png" alt="" width="48" height="48"><span>생활 직업</span></li><li><img class="px" src="img/ic_element.png" alt="" width="48" height="48"><span>속성</span></li><li><img class="px" src="img/ic_infuse.png" alt="" width="48" height="48"><span>속성 부여</span></li><li><img class="px" src="img/ic_scribe.png" alt="" width="48" height="48"><span>스크롤 제작</span></li><li><img class="px" src="img/ic_clock.png" alt="" width="48" height="48"><span>시간</span></li><li><img class="px" src="img/ic_info.png" alt="" width="48" height="48"><span>안내</span></li><li><img class="px" src="img/ic_fisher.png" alt="" width="48" height="48"><span>어부</span></li><li><img class="px" src="img/ic_karma.png" alt="" width="48" height="48"><span>업보</span></li><li><img class="px" src="img/ic_elite.png" alt="" width="48" height="48"><span>엘리트</span></li><li><img class="px" src="img/ic_quest_done.png" alt="" width="48" height="48"><span>완료 퀘스트</span></li><li><img class="px" src="img/ic_request.png" alt="" width="48" height="48"><span>의뢰</span></li><li><img class="px" src="img/ic_name.png" alt="" width="48" height="48"><span>이름</span></li><li><img class="px" src="img/ic_back.png" alt="" width="48" height="48"><span>이전</span></li><li><img class="px" src="img/ic_coin_small.png" alt="" width="48" height="48"><span>잔액</span></li><li><img class="px" src="img/ic_quest_locked.png" alt="" width="48" height="48"><span>잠긴 퀘스트</span></li><li><img class="px" src="img/ic_locked.png" alt="" width="48" height="48"><span>잠김</span></li><li><img class="px" src="img/ic_advance.png" alt="" width="48" height="48"><span>전직</span></li><li><img class="px" src="img/ic_forge.png" alt="" width="48" height="48"><span>제작</span></li><li><img class="px" src="img/ic_stock.png" alt="" width="48" height="48"><span>주식</span></li><li><img class="px" src="img/ic_map.png" alt="" width="48" height="48"><span>지도</span></li><li><img class="px" src="img/ic_home.png" alt="" width="48" height="48"><span>집</span></li><li><img class="px" src="img/ic_storage.png" alt="" width="48" height="48"><span>창고</span></li><li><img class="px" src="img/ic_search.png" alt="" width="48" height="48"><span>찾기</span></li><li><img class="px" src="img/ic_vitality.png" alt="" width="48" height="48"><span>체력</span></li><li><img class="px" src="img/ic_reset.png" alt="" width="48" height="48"><span>초기화</span></li><li><img class="px" src="img/ic_daily.png" alt="" width="48" height="48"><span>출석 · 일일</span></li><li><img class="px" src="img/ic_cancel.png" alt="" width="48" height="48"><span>취소</span></li><li><img class="px" src="img/ic_card_pack.png" alt="" width="48" height="48"><span>카드 묶음</span></li><li><img class="px" src="img/ic_quest.png" alt="" width="48" height="48"><span>퀘스트</span></li><li><img class="px" src="img/ic_confirm.png" alt="" width="48" height="48"><span>확인</span></li><li><img class="px" src="img/ic_rest.png" alt="" width="48" height="48"><span>휴식</span></li><li><img class="px" src="img/ic_hidden_chest.png" alt="" width="48" height="48"><span>히든 상자</span></li></ul>
+      <ul class="iconset"><li><img class="px" src="img/ic_engrave.png" alt="" width="48" height="48"><span>각인</span></li><li><img class="px" src="img/ic_enhance.png" alt="" width="48" height="48"><span>강화</span></li><li><img class="px" src="img/ic_duel.png" alt="" width="48" height="48"><span>결투</span></li><li><img class="px" src="img/ic_auction.png" alt="" width="48" height="48"><span>경매장</span></li><li><img class="px" src="img/ic_xp.png" alt="" width="48" height="48"><span>경험치</span></li><li><img class="px" src="img/ic_strength.png" alt="" width="48" height="48"><span>공격력</span></li><li><img class="px" src="img/ic_guild.png" alt="" width="48" height="48"><span>길드</span></li><li><img class="px" src="img/ic_profile.png" alt="" width="48" height="48"><span>내 정보</span></li><li><img class="px" src="img/ic_farmer.png" alt="" width="48" height="48"><span>농부</span></li><li><img class="px" src="img/ic_stats.png" alt="" width="48" height="48"><span>능력치</span></li><li><img class="px" src="img/ic_next.png" alt="" width="48" height="48"><span>다음</span></li><li><img class="px" src="img/ic_close.png" alt="" width="48" height="48"><span>닫기</span></li><li><img class="px" src="img/ic_blacksmith.png" alt="" width="48" height="48"><span>대장장이</span></li><li><img class="px" src="img/ic_dungeon.png" alt="" width="48" height="48"><span>던전</span></li><li><img class="px" src="img/ic_bestiary.png" alt="" width="48" height="48"><span>도감</span></li><li><img class="px" src="img/ic_money.png" alt="" width="48" height="48"><span>돈</span></li><li><img class="px" src="img/ic_land.png" alt="" width="48" height="48"><span>땅</span></li><li><img class="px" src="img/ic_mana.png" alt="" width="48" height="48"><span>마나</span></li><li><img class="px" src="img/ic_agility.png" alt="" width="48" height="48"><span>민첩</span></li><li><img class="px" src="img/ic_mail.png" alt="" width="48" height="48"><span>보관소</span></li><li><img class="px" src="img/ic_boss.png" alt="" width="48" height="48"><span>보스</span></li><li><img class="px" src="img/ic_empty.png" alt="" width="48" height="48"><span>빈 칸</span></li><li><img class="px" src="img/ic_shop.png" alt="" width="48" height="48"><span>상점</span></li><li><img class="px" src="img/ic_life.png" alt="" width="48" height="48"><span>생활 직업</span></li><li><img class="px" src="img/ic_element.png" alt="" width="48" height="48"><span>속성</span></li><li><img class="px" src="img/ic_infuse.png" alt="" width="48" height="48"><span>속성 부여</span></li><li><img class="px" src="img/ic_scribe.png" alt="" width="48" height="48"><span>스크롤 제작</span></li><li><img class="px" src="img/ic_clock.png" alt="" width="48" height="48"><span>시간</span></li><li><img class="px" src="img/ic_info.png" alt="" width="48" height="48"><span>안내</span></li><li><img class="px" src="img/ic_fisher.png" alt="" width="48" height="48"><span>어부</span></li><li><img class="px" src="img/ic_karma.png" alt="" width="48" height="48"><span>업보</span></li><li><img class="px" src="img/ic_elite.png" alt="" width="48" height="48"><span>엘리트</span></li><li><img class="px" src="img/ic_quest_done.png" alt="" width="48" height="48"><span>완료 퀘스트</span></li><li><img class="px" src="img/ic_request.png" alt="" width="48" height="48"><span>의뢰</span></li><li><img class="px" src="img/ic_name.png" alt="" width="48" height="48"><span>이름</span></li><li><img class="px" src="img/ic_back.png" alt="" width="48" height="48"><span>이전</span></li><li><img class="px" src="img/ic_coin_small.png" alt="" width="48" height="48"><span>잔액</span></li><li><img class="px" src="img/ic_quest_locked.png" alt="" width="48" height="48"><span>잠긴 퀘스트</span></li><li><img class="px" src="img/ic_locked.png" alt="" width="48" height="48"><span>잠김</span></li><li><img class="px" src="img/ic_advance.png" alt="" width="48" height="48"><span>전직</span></li><li><img class="px" src="img/ic_forge.png" alt="" width="48" height="48"><span>제작</span></li><li><img class="px" src="img/ic_stock.png" alt="" width="48" height="48"><span>주식</span></li><li><img class="px" src="img/ic_map.png" alt="" width="48" height="48"><span>지도</span></li><li><img class="px" src="img/ic_home.png" alt="" width="48" height="48"><span>집</span></li><li><img class="px" src="img/ic_storage.png" alt="" width="48" height="48"><span>창고</span></li><li><img class="px" src="img/ic_search.png" alt="" width="48" height="48"><span>찾기</span></li><li><img class="px" src="img/ic_vitality.png" alt="" width="48" height="48"><span>체력</span></li><li><img class="px" src="img/ic_reset.png" alt="" width="48" height="48"><span>초기화</span></li><li><img class="px" src="img/ic_daily.png" alt="" width="48" height="48"><span>출석 · 일일</span></li><li><img class="px" src="img/ic_cancel.png" alt="" width="48" height="48"><span>취소</span></li><li><img class="px" src="img/ic_card_pack.png" alt="" width="48" height="48"><span>카드 묶음</span></li><li><img class="px" src="img/ic_quest.png" alt="" width="48" height="48"><span>퀘스트</span></li><li><img class="px" src="img/ic_confirm.png" alt="" width="48" height="48"><span>확인</span></li><li><img class="px" src="img/ic_rest.png" alt="" width="48" height="48"><span>휴식</span></li><li><img class="px" src="img/ic_hidden_chest.png" alt="" width="48" height="48"><span>히든 상자</span></li></ul>
     </div>
   </section>
   <section class="block" id="growth">
     <div class="wrap">
       <div class="block-head">
-        <p class="eyebrow"><span class="num">08</span>0.2 업데이트</p>
+        <p class="eyebrow"><span class="num">07</span>0.2 업데이트</p>
         <h2>성장 업데이트</h2>
         <p class="summary">레벨 · 스탯 · 직업 퀘스트 · 2차/3차 전직 · V 스킬 · 모험가 수첩</p>
       </div>
 <ul class="patch"><li><span class="pt t-new">신규</span><b>길드 레벨</b><span class="pd">최대 Lv.50 · 몬스터 처치(체력 × 0.5) · 엘리트 ×5 · 퀘스트 · 일일 임무 · 출석</span></li><li><span class="pt t-new">신규</span><b>스탯 4종</b><span class="pd">레벨당 3포인트 · 공격력 / 체력 / 민첩 / 마나 · 각 최대 100 · 초기화 10금</span></li><li><span class="pt t-new">신규</span><b>직업 퀘스트</b><span class="pd"><kbd>R</kbd> 스킬 잠금 상태로 시작 → 지정 몬스터 처치로 해방</span></li><li><span class="pt t-new">신규</span><b>2차 · 3차 전직</b><span class="pd">2차 Lv.15 · 3차 Lv.35 · 직업마다 두 갈래 · 총 20종 · 조건: 레벨 + 전직 시험 + 비용</span></li><li><span class="pt t-new">신규</span><b>V 스킬</b><span class="pd">2차 전직 때 직업별 새 스킬 10종 · 3차에서 위력 증가</span></li><li><span class="pt t-new">신규</span><b>모험가 수첩</b><span class="pd"><kbd>K</kbd> · 능력치 · 퀘스트 · 전직 · 도감 · 보관소 · 경매 · 결투 · 업보 메뉴 모음</span></li></ul>
-      <div class="split">
+      <div class="gallery "><figure class="g-shot"><img src="img/g_hub.jpg" alt="모험가 수첩 (K): 모든 메뉴" width="1280" height="720" loading="lazy"><figcaption>모험가 수첩 (K): 모든 메뉴</figcaption></figure><figure class="g-shot"><img src="img/g_stats.jpg" alt="능력치: 포인트 찍기" width="1280" height="720" loading="lazy"><figcaption>능력치: 포인트 찍기</figcaption></figure><figure class="g-shot"><img src="img/g_levelup.jpg" alt="레벨업" width="1280" height="720" loading="lazy"><figcaption>레벨업</figcaption></figure><figure class="g-shot"><img src="img/g_advance.jpg" alt="전직 창: 2차 저격수" width="1280" height="720" loading="lazy"><figcaption>전직 창: 2차 저격수</figcaption></figure></div>
+      <div class="split wide-clip">
         <div class="stack">
           <h3 class="sub">스탯</h3>
           <div class="table-wrap"><table class="data"><thead><tr><th>스탯</th><th>1포인트</th><th>최대(100)</th></tr></thead><tbody><tr><th>공격력</th><td>주는 피해 +0.5%</td><td>+50%</td></tr><tr><th>체력</th><td>최대 체력 +0.2</td><td>+20</td></tr><tr><th>민첩</th><td>이동 속도 +0.15%</td><td>+15%</td></tr><tr><th>마나</th><td>마나·기력 +1 · 회복 +0.02/초</td><td>+100 · +2/초</td></tr></tbody></table></div>
@@ -877,7 +887,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
   <section class="block" id="gear">
     <div class="wrap">
       <div class="block-head">
-        <p class="eyebrow"><span class="num">09</span>0.2 업데이트</p>
+        <p class="eyebrow"><span class="num">08</span>0.2 업데이트</p>
         <h2>장비 업데이트</h2>
         <p class="summary">각인 카드 · 속성 부여 · 변형 무기</p>
       </div>
@@ -889,6 +899,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
         </div>
         <div class="stack"><figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/gear.jpg" aria-label="각인 → 속성 부여(화염) → 변형(톱날 대검 접힘 ⇄ 펼침)"><source src="media/gear.mp4" type="video/mp4"></video></div><figcaption>각인 → 속성 부여(화염) → 변형(톱날 대검 접힘 ⇄ 펼침)</figcaption></figure></div>
       </div>
+      <div class="gallery "><figure class="g-shot"><img src="img/g_engrave.jpg" alt="각인된 무기: [에픽] 고블린 왕 카드 공격력 +2" width="1280" height="720" loading="lazy"><figcaption>각인된 무기: [에픽] 고블린 왕 카드 공격력 +2</figcaption></figure><figure class="g-shot"><img src="img/g_infuse.jpg" alt="속성 부여 창: 화염의 속성석" width="1280" height="720" loading="lazy"><figcaption>속성 부여 창: 화염의 속성석</figcaption></figure></div>
       <details class="cards-all" open><summary>카드 28종 (희귀도 순)</summary>
       <div class="table-wrap"><table class="data cards"><thead><tr><th></th><th>카드</th><th>나오는 곳</th><th>확률</th><th>장착</th><th>능력치</th></tr></thead><tbody><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 돼지 전사 카드</th><td>돼지 전사</td><td>2%</td><td>방어구</td><td>체력 +1~15</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 고블린 카드</th><td>고블린</td><td>1.5%</td><td>무기</td><td>공격 속도 +0.03~0.12</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 돼지 카드</th><td>돼지</td><td>1%</td><td>방어구</td><td>체력 +1~4</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 소 카드</th><td>소</td><td>1%</td><td>방어구</td><td>방어력 +0.5~1.5</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 닭 카드</th><td>닭</td><td>1%</td><td>방어구</td><td>이동 속도 +1%~3%</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 양 카드</th><td>양</td><td>1%</td><td>방어구</td><td>넉백 저항 +2%~6%</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 좀비 카드</th><td>좀비</td><td>0.8%</td><td>방어구</td><td>체력 +1~3</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 허스크 카드</th><td>허스크</td><td>0.8%</td><td>방어구</td><td>방어력 +0.5~2</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 스켈레톤 카드</th><td>스켈레톤</td><td>0.8%</td><td>무기</td><td>공격력 +0.2~1</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 거미 카드</th><td>거미</td><td>0.8%</td><td>방어구</td><td>이동 속도 +1%~4%</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 약탈자 카드</th><td>약탈자</td><td>0.8%</td><td>무기</td><td>공격 속도 +0.05~0.15</td></tr><tr class="c-normal"><td><img class="px" src="img/i_engrave_card_normal.png" alt="" width="28" height="28"></td><th><span class="rar">[노말]</span> 슬라임 카드</th><td>슬라임</td><td>0.6%</td><td>방어구</td><td>넉백 저항 +3%~8%</td></tr><tr class="c-rare"><td><img class="px" src="img/i_engrave_card_rare.png" alt="" width="28" height="28"></td><th><span class="rar">[레어]</span> 크리퍼 카드</th><td>크리퍼</td><td>0.5%</td><td>무기</td><td>공격력 +0.5~1.5</td></tr><tr class="c-rare"><td><img class="px" src="img/i_engrave_card_rare.png" alt="" width="28" height="28"></td><th><span class="rar">[레어]</span> 스트레이 카드</th><td>스트레이</td><td>0.6%</td><td>방어구</td><td>최대 마나·기력 +3~10</td></tr><tr class="c-rare"><td><img class="px" src="img/i_engrave_card_rare.png" alt="" width="28" height="28"></td><th><span class="rar">[레어]</span> 드라운드 카드</th><td>드라운드</td><td>0.5%</td><td>방어구</td><td>체력 +2~5</td></tr><tr class="c-rare"><td><img class="px" src="img/i_engrave_card_rare.png" alt="" width="28" height="28"></td><th><span class="rar">[레어]</span> 엔더맨 카드</th><td>엔더맨</td><td>0.5%</td><td>방어구</td><td>최대 마나·기력 +5~15</td></tr><tr class="c-rare"><td><img class="px" src="img/i_engrave_card_rare.png" alt="" width="28" height="28"></td><th><span class="rar">[레어]</span> 마녀 카드</th><td>마녀</td><td>0.6%</td><td>무기</td><td>스킬 위력 +3%~8%</td></tr><tr class="c-rare"><td><img class="px" src="img/i_engrave_card_rare.png" alt="" width="28" height="28"></td><th><span class="rar">[레어]</span> 블레이즈 카드</th><td>블레이즈</td><td>0.5%</td><td>무기</td><td>공격력 +0.8~2</td></tr><tr class="c-epic"><td><img class="px" src="img/i_engrave_card_epic.png" alt="" width="28" height="28"></td><th><span class="rar">[에픽]</span> 고블린 왕 카드</th><td>필드 보스 고블린 왕 그락</td><td>25%</td><td>무기</td><td>공격력 +0.3~2.5</td></tr><tr class="c-epic"><td><img class="px" src="img/i_engrave_card_epic.png" alt="" width="28" height="28"></td><th><span class="rar">[에픽]</span> 변명자 카드</th><td>변명자</td><td>0.4%</td><td>무기</td><td>공격력 +0.3~2.5</td></tr><tr class="c-epic"><td><img class="px" src="img/i_engrave_card_epic.png" alt="" width="28" height="28"></td><th><span class="rar">[에픽]</span> 위더 스켈레톤 카드</th><td>위더 스켈레톤</td><td>0.4%</td><td>무기</td><td>공격력 +1~2.5</td></tr><tr class="c-epic"><td><img class="px" src="img/i_engrave_card_epic.png" alt="" width="28" height="28"></td><th><span class="rar">[에픽]</span> 소환사 카드</th><td>소환사</td><td>1%</td><td>방어구</td><td>최대 마나·기력 +10~30</td></tr><tr class="c-epic"><td><img class="px" src="img/i_engrave_card_epic.png" alt="" width="28" height="28"></td><th><span class="rar">[에픽]</span> 파괴수 카드</th><td>파괴수</td><td>1%</td><td>방어구</td><td>체력 +4~10</td></tr><tr class="c-epic"><td><img class="px" src="img/i_engrave_card_epic.png" alt="" width="28" height="28"></td><th><span class="rar">[에픽]</span> 브리즈 카드</th><td>브리즈</td><td>0.6%</td><td>방어구</td><td>이동 속도 +3%~8%</td></tr><tr class="c-legend"><td><img class="px" src="img/i_engrave_card_legend.png" alt="" width="28" height="28"></td><th><span class="rar">[전설]</span> 워든 카드</th><td>워든</td><td>20%</td><td>방어구</td><td>체력 +6~16</td></tr><tr class="c-legend"><td><img class="px" src="img/i_engrave_card_legend.png" alt="" width="28" height="28"></td><th><span class="rar">[전설]</span> 타락한 기사 카드</th><td>필드 보스 타락한 기사 발더</td><td>15%</td><td>무기</td><td>공격력 +2~4</td></tr><tr class="c-legend"><td><img class="px" src="img/i_engrave_card_legend.png" alt="" width="28" height="28"></td><th><span class="rar">[전설]</span> 숲의 파괴자 카드</th><td>필드 보스 숲의 파괴자 그롬</td><td>15%</td><td>방어구</td><td>체력 +5~12</td></tr><tr class="c-legend"><td><img class="px" src="img/i_engrave_card_legend.png" alt="" width="28" height="28"></td><th><span class="rar">[전설]</span> 서리 군주 카드</th><td>필드 보스 서리 군주 이그나</td><td>15%</td><td>무기</td><td>스킬 위력 +8%~20%</td></tr></tbody></table></div></details>
       <h3 class="sub wide">속성 부여</h3>
@@ -935,12 +946,13 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
   <section class="block" id="daily">
     <div class="wrap">
       <div class="block-head">
-        <p class="eyebrow"><span class="num">10</span>0.2 업데이트</p>
+        <p class="eyebrow"><span class="num">09</span>0.2 업데이트</p>
         <h2>일일 콘텐츠 업데이트</h2>
         <p class="summary">출석 · 일일 임무 · 의뢰 · 길드 보관소 · 히든 상자</p>
       </div>
 <ul class="patch"><li><span class="pt t-new">신규</span><b>출석 보상 7일</b><span class="pd">접속하면 자동 · 빠진 날이 있어도 다음 차례로 이어짐 · 서울 자정 기준</span></li><li><span class="pt t-new">신규</span><b>일일 임무 3개</b><span class="pd">12종 중 사람마다 하루 3개 · 모두 완료 보너스 5금 · 경험치 150</span></li><li><span class="pt t-new">신규</span><b>의뢰 (자동 사냥)</b><span class="pd">돈을 내고 시간 구매 → 시간당 전리품 누적 · 접속하지 않아도 실제 시간으로 쌓임</span></li><li><span class="pt t-new">신규</span><b>길드 보관소</b><span class="pd">메일함 방안 1 채택 · 가방이 차면 보상을 대신 보관 · 출석 · 점검 보상 · 경매 낙찰품</span></li><li><span class="pt t-new">신규</span><b>히든 상자</b><span class="pd">곳곳에 숨은 상자 · 모험가마다 한 번 · 소 · 중 · 대 등급</span></li></ul>
-      <div class="split">
+      <div class="gallery "><figure class="g-shot"><img src="img/g_daily.jpg" alt="출석 보상 (7일 주기)" width="1280" height="720" loading="lazy"><figcaption>출석 보상 (7일 주기)</figcaption></figure><figure class="g-shot"><img src="img/g_mission.jpg" alt="일일 임무 3개" width="1280" height="720" loading="lazy"><figcaption>일일 임무 3개</figcaption></figure><figure class="g-shot"><img src="img/g_request.jpg" alt="의뢰 게시판" width="1280" height="720" loading="lazy"><figcaption>의뢰 게시판</figcaption></figure><figure class="g-shot"><img src="img/g_mail.jpg" alt="길드 보관소" width="1280" height="720" loading="lazy"><figcaption>길드 보관소</figcaption></figure></div>
+      <div class="split wide-clip">
         <div class="stack">
           <h3 class="sub">출석 보상</h3>
           <div class="table-wrap"><table class="data"><thead><tr><th></th><th>돈</th><th>경험치</th><th>물건</th></tr></thead><tbody><tr><th>1일차</th><td>3금</td><td>50</td><td>마물의 정수 ×5, 빵 ×16</td></tr><tr><th>2일차</th><td>3금 50은</td><td>60</td><td>강화석 ×2</td></tr><tr><th>3일차</th><td>4금</td><td>70</td><td>귀환 주문서 ×2, 말 치료 붕대 ×2</td></tr><tr><th>4일차</th><td>4금 50은</td><td>80</td><td>강화석 ×2, 마물의 정수 ×5</td></tr><tr><th>5일차</th><td>5금</td><td>90</td><td>무작위 각인 카드 ×1</td></tr><tr><th>6일차</th><td>6금</td><td>100</td><td>강화석 ×3, 지혜 주문서 ×1</td></tr><tr><th>7일차</th><td>10금</td><td>200</td><td>무작위 속성석 ×1, 에픽 이상 각인 카드 ×1, 엘리트의 전리품 ×2</td></tr></tbody></table></div>
@@ -967,17 +979,18 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
   <section class="block" id="town">
     <div class="wrap">
       <div class="block-head">
-        <p class="eyebrow"><span class="num">11</span>0.2 업데이트</p>
+        <p class="eyebrow"><span class="num">10</span>0.2 업데이트</p>
         <h2>생활 · 교류 업데이트</h2>
         <p class="summary">생활 직업 · 주문서 · 경매장 · 결투 · 업보</p>
       </div>
 <ul class="patch"><li><span class="pt t-new">신규</span><b>생활 직업 4종</b><span class="pd">농부 · 어부 · 대장장이 · 스크롤 제작자 · 1~5레벨(경험치 100, 300, 700, 1500) · 승급 과제 · 바꾸면 레벨 1</span></li><li><span class="pt t-new">신규</span><b>주문서 5종</b><span class="pd">귀환 · 신속 · 회복 · 지혜 · 수호 · 스크롤 제작자가 제작</span></li><li><span class="pt t-new">신규</span><b>경매장</b><span class="pd"><code>/경매 등록 &lt;가격&gt;</code> · 수수료 5% · 1인 10개 · 72시간 후 반환 · 접속 안 해도 판매 대금 입금</span></li><li><span class="pt t-new">신규</span><b>결투</b><span class="pd">동의제(<code>/결투</code> → <code>/결투 수락</code>) · 결투장 이동 · 3초 카운트다운 · 체력 0 = 패배(사망 · 아이템 손실 없음) · 3분 무승부</span></li><li><span class="pt t-new">신규</span><b>업보</b><span class="pd">상인 3대 → 물건 2개 강탈 · 업보 +10 · 상인 3분 거래 거부 · 죽을 때 업보 × 1% 확률로 소지품 일부 떨어뜨림(최대 80%)</span></li></ul>
+      <div class="gallery three"><figure class="g-shot"><img src="img/g_lifejobs.jpg" alt="생활 직업 고르기" width="1280" height="720" loading="lazy"><figcaption>생활 직업 고르기</figcaption></figure><figure class="g-shot"><img src="img/g_life.jpg" alt="스크롤 제작자: 만들 수 있는 주문서" width="1280" height="720" loading="lazy"><figcaption>스크롤 제작자: 만들 수 있는 주문서</figcaption></figure><figure class="g-shot"><img src="img/g_scroll.jpg" alt="귀환 주문서 만들기: 재료 · 경험치" width="1280" height="720" loading="lazy"><figcaption>귀환 주문서 만들기: 재료 · 경험치</figcaption></figure></div>
       <h3 class="sub wide">생활 직업</h3>
       <div class="lifes"><article class="life" style="--job:#C8E060">
   <h4>농부</h4>
   <ol class="perks"><li><b>1</b> 기본</li><li><b>2</b> 수확 시 10% 확률로 한 개 더 · 곡물 판매 +5%</li><li><b>3</b> 추가 수확 20% · 판매 +10% · 말 약초 붕대 제작</li><li><b>4</b> 추가 수확 30% · 판매 +15%</li><li><b>5</b> 추가 수확 40% · 판매 +20% · 황금 당근 제작</li></ol>
   <p class="note">승급 과제: 밀 32개 납품 → 당근 32개·감자 32개 납품 → 호박 16개·수박 조각 32개 납품 → 건초 더미 16개 납품</p>
-  <ul class="list small"><li><span>말 약초 붕대 <small>(3레벨)</small></span><span class="tab">밀 ×6, 실 ×2</span></li><li><span>황금 당근 <small>(5레벨)</small></span><span class="tab">당근 ×4, 금 조각 ×8</span></li></ul>
+  <ul class="list small"><li><span>황금 당근 <small>(5레벨)</small></span><span class="tab">당근 ×4, 금 조각 ×8</span></li></ul>
 </article><article class="life" style="--job:#5AB8FF">
   <h4>어부</h4>
   <ol class="perks"><li><b>1</b> 기본</li><li><b>2</b> 10% 확률로 한 마리 더 · 낚시터 판매 +5%</li><li><b>3</b> 한 마리 더 20% · 판매 +10%</li><li><b>4</b> 한 마리 더 30% · 판매 +15%</li><li><b>5</b> 한 마리 더 40% · 판매 +20%</li></ol>
@@ -987,17 +1000,18 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
   <h4>대장장이</h4>
   <ol class="perks"><li><b>1</b> 기본 · 강화석 제작</li><li><b>2</b> 강화 성공 +2%p · 무기 제작비 -5%</li><li><b>3</b> 강화 +4%p · 제작비 -10%</li><li><b>4</b> 강화 +6%p · 제작비 -15% · 속성석 제작</li><li><b>5</b> 강화 +8%p · 제작비 -20% · 고대의 핵 제련</li></ol>
   <p class="note">승급 과제: 철 주괴 32개 납품 → 금 주괴 16개·마물의 정수 16개 납품 → 다이아몬드 8개 납품 → 엘리트의 전리품 8개 납품</p>
-  <ul class="list small"><li><span>강화석 <small>(1레벨)</small></span><span class="tab">철 주괴 ×4, 마물의 정수 ×2</span></li><li><span>화염의 속성석 <small>(4레벨)</small></span><span class="tab">블레이즈 가루 ×6, 다이아몬드 ×1, 마물의 정수 ×6</span></li><li><span>서리의 속성석 <small>(4레벨)</small></span><span class="tab">푸른 얼음 ×4, 다이아몬드 ×1, 마물의 정수 ×6</span></li><li><span>뇌전의 속성석 <small>(4레벨)</small></span><span class="tab">구리 주괴 ×16, 다이아몬드 ×1, 마물의 정수 ×6</span></li><li><span>맹독의 속성석 <small>(4레벨)</small></span><span class="tab">거미 눈 ×8, 다이아몬드 ×1, 마물의 정수 ×6</span></li><li><span>신성의 속성석 <small>(4레벨)</small></span><span class="tab">발광석 가루 ×12, 금 주괴 ×4, 마물의 정수 ×6</span></li><li><span>비전의 속성석 <small>(4레벨)</small></span><span class="tab">자수정 조각 ×12, 엔더 진주 ×2, 마물의 정수 ×6</span></li><li><span>고대의 핵 제련 <small>(5레벨)</small></span><span class="tab">엘리트의 전리품 ×6, 네더라이트 파편 ×1</span></li></ul>
+  <ul class="list small"><li><span><img class="px ii" src="img/i_enhance_stone.png" alt="" width="32" height="32">강화석 <small>(1레벨)</small></span><span class="tab">철 주괴 ×4, 마물의 정수 ×2</span></li><li><span><img class="px ii" src="img/i_element_stone_fire.png" alt="" width="32" height="32">화염의 속성석 <small>(4레벨)</small></span><span class="tab">블레이즈 가루 ×6, 다이아몬드 ×1, 마물의 정수 ×6</span></li><li><span><img class="px ii" src="img/i_element_stone_frost.png" alt="" width="32" height="32">서리의 속성석 <small>(4레벨)</small></span><span class="tab">푸른 얼음 ×4, 다이아몬드 ×1, 마물의 정수 ×6</span></li><li><span><img class="px ii" src="img/i_element_stone_lightning.png" alt="" width="32" height="32">뇌전의 속성석 <small>(4레벨)</small></span><span class="tab">구리 주괴 ×16, 다이아몬드 ×1, 마물의 정수 ×6</span></li><li><span><img class="px ii" src="img/i_element_stone_poison.png" alt="" width="32" height="32">맹독의 속성석 <small>(4레벨)</small></span><span class="tab">거미 눈 ×8, 다이아몬드 ×1, 마물의 정수 ×6</span></li><li><span><img class="px ii" src="img/i_element_stone_holy.png" alt="" width="32" height="32">신성의 속성석 <small>(4레벨)</small></span><span class="tab">발광석 가루 ×12, 금 주괴 ×4, 마물의 정수 ×6</span></li><li><span><img class="px ii" src="img/i_element_stone_arcane.png" alt="" width="32" height="32">비전의 속성석 <small>(4레벨)</small></span><span class="tab">자수정 조각 ×12, 엔더 진주 ×2, 마물의 정수 ×6</span></li><li><span><img class="px ii" src="img/i_ancient_core.png" alt="" width="32" height="32">고대의 핵 제련 <small>(5레벨)</small></span><span class="tab">엘리트의 전리품 ×6, 네더라이트 파편 ×1</span></li></ul>
 </article><article class="life" style="--job:#E8D8A0">
   <h4>스크롤 제작자</h4>
   <ol class="perks"><li><b>1</b> 귀환 주문서</li><li><b>2</b> 신속 주문서</li><li><b>3</b> 회복 주문서</li><li><b>4</b> 지혜 주문서</li><li><b>5</b> 수호 주문서</li></ol>
   <p class="note">승급 과제: 종이 64장 납품 → 책 16권 납품 → 청금석 32개·마물의 정수 16개 납품 → 자수정 조각 32개 납품</p>
-  <ul class="list small"><li><span>귀환 주문서 <small>(1레벨)</small></span><span class="tab">종이 ×2, 마물의 정수 ×1</span></li><li><span>신속 주문서 <small>(2레벨)</small></span><span class="tab">종이 ×1, 설탕 ×4, 마물의 정수 ×1</span></li><li><span>회복 주문서 <small>(3레벨)</small></span><span class="tab">종이 ×1, 반짝이는 수박 ×1, 마물의 정수 ×2</span></li><li><span>지혜 주문서 <small>(4레벨)</small></span><span class="tab">책 ×1, 청금석 ×8, 마물의 정수 ×4</span></li><li><span>수호 주문서 <small>(5레벨)</small></span><span class="tab">책 ×1, 황금 사과 ×1, 엘리트의 전리품 ×1</span></li></ul>
+  <ul class="list small"><li><span><img class="px ii" src="img/i_scroll_return.png" alt="" width="32" height="32">귀환 주문서 <small>(1레벨)</small></span><span class="tab">종이 ×2, 마물의 정수 ×1</span></li><li><span><img class="px ii" src="img/i_scroll_haste.png" alt="" width="32" height="32">신속 주문서 <small>(2레벨)</small></span><span class="tab">종이 ×1, 설탕 ×4, 마물의 정수 ×1</span></li><li><span><img class="px ii" src="img/i_scroll_heal.png" alt="" width="32" height="32">회복 주문서 <small>(3레벨)</small></span><span class="tab">종이 ×1, 반짝이는 수박 ×1, 마물의 정수 ×2</span></li><li><span><img class="px ii" src="img/i_scroll_wisdom.png" alt="" width="32" height="32">지혜 주문서 <small>(4레벨)</small></span><span class="tab">책 ×1, 청금석 ×8, 마물의 정수 ×4</span></li><li><span><img class="px ii" src="img/i_scroll_guard.png" alt="" width="32" height="32">수호 주문서 <small>(5레벨)</small></span><span class="tab">책 ×1, 황금 사과 ×1, 엘리트의 전리품 ×1</span></li></ul>
 </article></div>
       <div class="split wide-clip">
         <figure class="clip"><div class="frame"><video controls muted playsinline preload="none" poster="media/life.jpg" aria-label="생활 직업 바꾸기 · 귀환 주문서 만들기 · 몬스터 도감"><source src="media/life.mp4" type="video/mp4"></video></div><figcaption>생활 직업 바꾸기 · 귀환 주문서 만들기 · 몬스터 도감</figcaption></figure>
-        <div class="stack"><h3 class="sub">주문서</h3><ul class="list"><li><span>귀환 주문서</span><span class='tab'>2초 뒤 길드로</span></li><li><span>신속 주문서</span><span class='tab'>3분 신속 II</span></li><li><span>회복 주문서</span><span class='tab'>체력 10 + 재생</span></li><li><span>지혜 주문서</span><span class='tab'>20분 경험치 1.5배</span></li><li><span>수호 주문서</span><span class='tab'>다음 죽음 업보 손실 방지 + 흡수 II</span></li></ul><p class="note">우클릭으로 사용</p></div>
+        <div class="stack"><h3 class="sub">주문서 (스크롤 제작자가 만듦)</h3><ul class="scrolls"><li class='scroll-item'><img class='px' src='img/i_scroll_return.png' alt='' width='48' height='48'><span><b>귀환 주문서</b><small>2초 뒤 길드로</small></span></li><li class='scroll-item'><img class='px' src='img/i_scroll_haste.png' alt='' width='48' height='48'><span><b>신속 주문서</b><small>3분 신속 II</small></span></li><li class='scroll-item'><img class='px' src='img/i_scroll_heal.png' alt='' width='48' height='48'><span><b>회복 주문서</b><small>체력 10 + 재생</small></span></li><li class='scroll-item'><img class='px' src='img/i_scroll_wisdom.png' alt='' width='48' height='48'><span><b>지혜 주문서</b><small>20분 경험치 1.5배</small></span></li><li class='scroll-item'><img class='px' src='img/i_scroll_guard.png' alt='' width='48' height='48'><span><b>수호 주문서</b><small>다음 죽음 업보 손실 방지 + 흡수 II</small></span></li></ul><p class="note">우클릭으로 사용</p></div>
       </div>
+      <div class="gallery three"><figure class="g-shot"><img src="img/g_auction.jpg" alt="경매장: 올라온 물건 사기" width="1280" height="720" loading="lazy"><figcaption>경매장: 올라온 물건 사기</figcaption></figure><figure class="g-shot"><img src="img/g_duel.jpg" alt="결투: 동의한 두 사람만 결투장에서" width="1280" height="720" loading="lazy"><figcaption>결투: 동의한 두 사람만 결투장에서</figcaption></figure><figure class="g-shot"><img src="img/g_karma.jpg" alt="업보: 상인 털기" width="1280" height="720" loading="lazy"><figcaption>업보: 상인 털기</figcaption></figure></div>
       <div class="split wide-clip">
         <div class="stack">
           <h3 class="sub">업보 정리</h3>
@@ -1010,7 +1024,7 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-var
   <section class="block" id="start">
     <div class="wrap">
       <div class="block-head">
-        <p class="eyebrow"><span class="num">12</span>안내</p>
+        <p class="eyebrow"><span class="num">11</span>안내</p>
         <h2>시작하기</h2>
       </div>
       <div class="start">
